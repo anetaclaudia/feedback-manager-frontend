@@ -1,0 +1,21 @@
+<table class="table table-borderless">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Category</th>
+    <th scope="col">Text</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let feedback of feedbacks">
+    <th scope="row">{{feedback.id}}</th>
+    <td>{{feedback.name}}</td>
+    <td>{{feedback.emailAddress}}</td>
+    <td>{{getNames(feedback.feedbackCategories)}}</td>
+<!--    <td *ngFor="let feedbackCategory of feedback.feedbackCategories">{{feedbackCategory.name}}</td>-->
+    <td>{{feedback.text}}</td>
+  </tr>
+  </tbody>
+</table>

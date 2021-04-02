@@ -1,0 +1,55 @@
+<form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+  <div>
+    <h1 class="h3 mb-3 font-weight-normal">Please give us feedback</h1>
+  </div>
+
+  <div class="mb-3">
+    <input id="name" class="form-control" type="text" formControlName="name" placeholder="Name" required>
+  </div>
+  <div *ngIf="name.invalid && (name.dirty || name.touched)"
+       class="alert alert-danger">
+    <div *ngIf="name.errors.required">
+      Name is required.
+    </div>
+    <div *ngIf="name.errors.minlength">
+      Name must be at least 4 characters long.
+    </div>
+    <div *ngIf="name.errors.pattern">
+      Name can't contain numbers or special characters.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <input id="emailAddress" class="form-control" type="email" formControlName="emailAddress" placeholder="Email address" required>
+  </div>
+  <div *ngIf="emailAddress.invalid && (emailAddress.dirty || emailAddress.touched)"
+       class="alert alert-danger">
+    <div *ngIf="emailAddress.errors.required">
+      Email address is required.
+    </div>
+    <div *ngIf="emailAddress.errors.pattern">
+      Email address must be written correct format.
+    </div>
+  </div>
+
+
+  <div class="mb-3">
+    <textarea class="form-control" formControlName="text" rows="3" placeholder="Text" required></textarea>
+  </div>
+  <div *ngIf="text.invalid && (text.dirty || text.touched)"
+       class="alert alert-danger">
+    <div *ngIf="text.errors.required">
+      Feedback text is required.
+    </div>
+  </div>
+
+
+  <div class="mb-3">
+    <select class="form-control" multiple formControlName="feedbackCategories">
+      <option *ngFor="let feedbackCategory of feedbackCategories" [ngValue]="feedbackCategory.id" [disabled] = 'feedbackCategory.disabled'>
+        {{'-'.repeat(feedbackCategory.level) + feedbackCategory.name}}
+      </option>
+    </select>
+  </div>
+  <button type="submit" class="w-100 btn btn-lg btn-primary">Send</button>
+</form>
